@@ -4,9 +4,53 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- link to the stylesheet for this page -->
+  <link href="styles/game.css" rel="stylesheet"/>
   <title>Single Player</title>
 </head>
 <body>
-  
+  <!-- contains the header with title image linking to the home page, visually identical to the index page's header -->
+  <header>
+    <a href="/">
+      <img class="title" src="Images/tictactitle.png">
+    </a>
+</header>
+  <!-- contains navbar linking to the other pages, identical to other pages' navbar -->
+  <nav class="navbar">
+      <a id="home" href="/">Home</a></li>
+      <a href="single-player.html">Single</a></li>
+      <a href="multi-player.html">Multi</a></li>
+  </nav>
+  <!-- contains smaller title, the board, and the buttons -->
+  <main class="main">
+    <!-- smaller title -->
+    <h1 class="single">Single Player</h1>
+    <!-- contains boxes for each square in the board, with ids to tell where each is located -->
+    <div class="board">
+      <box id="top-left"></box>
+      <box id="top-center"></box>
+      <box id="top-right"></box>
+      <box id="center-left"></box>
+      <box id="center"></box>
+      <box id="center-right"></box>
+      <box id="bottom-left"></box>
+      <box id="bottom-center"></box>
+      <box id="bottom-right"></box>
+    </div>
+    <!-- contains the buttons. "start" is enabled, rest are disabled -->
+    <div class="buttons">
+      <button>Start</button>
+      <button disabled>Reset</button>
+      <button disabled>Replay</button>
+    </div>
+  </main>
+  <!-- footer containing copyright and contact info -->
+  <footer class="footer">
+    <p id="copy">&copy; 2021 My Website</p>
+    <ul id="contact">
+      <li>(000)000-0000</li>
+      <li>name@email.com</li>
+    </ul>
+  </footer>
 </body>
 </html>
