@@ -55,7 +55,7 @@ header {
 /* justify-content: space-around keeps items evenly spaced and centered around the x axis */
 /* align-items to center each item on the y axis */
 /* sets background color-white */
-#main {
+.main {
     min-height: 80vh;
     display: flex;
     flex-direction: column;

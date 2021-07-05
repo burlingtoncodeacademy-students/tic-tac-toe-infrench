@@ -22,27 +22,32 @@
       <a href="multi-player.html">Multi</a></li>
   </nav>
   <!-- contains smaller title, the board, and the buttons -->
-  <main class="main">
+  <main id="main">
     <!-- smaller title -->
     <h1 class="multi">Multiplayer</h1>
+    <div>
+      <h3 id="status"></h3>
+      <p id="invalid"></p>
+    </div>
     <!-- contains boxes for each square on the board, with ids to tell where each is located -->
-    <div class="board">
-      <box id="top-left"></box>
-      <box id="top-center"></box>
-      <box id="top-right"></box>
-      <box id="center-left"></box>
-      <box id="center"></box>
-      <box id="center-right"></box>
-      <box id="bottom-left"></box>
-      <box id="bottom-center"></box>
-      <box id="bottom-right"></box>
+    <div id="board">
+      <box id="top-left" class="row1 column1 diagonal1"></box>
+      <box id="top-center" class="row1 column2"></box>
+      <box id="top-right" class="row1 column3 diagonal2"></box>
+      <box id="center-left" class="row2 column1"></box>
+      <box id="center" class="row2 column2 diagonal1 diagonal2"></box>
+      <box id="center-right" class="row2 column3"></box>
+      <box id="bottom-left" class="row3 column1 diagonal2"></box>
+      <box id="bottom-center" class="row3 column2"></box>
+      <box id="bottom-right" class="row3 column3 diagonal1"></box>
     </div>
     <!-- contains the buttons. "Start" is enabled, rest disabled -->
     <div class="buttons">
-      <button>Start</button>
-      <button disabled>Reset</button>
-      <button disabled>Replay</button>
+      <button id="start">Start</button>
+      <button disabled id="reset">Reset</button>
+      <button disabled id="replay">Replay</button>
     </div>
+    <div id="timer"></div>
   </main>
   <!-- footer containing copyright and contact info -->
   <footer class="footer">
@@ -52,5 +57,6 @@
       <li>name@email.com</li>
     </ul>
   </footer>
+  <script src="scripts/multi.js"></script>
 </body>
 </html>
