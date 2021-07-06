@@ -1,54 +1,54 @@
 /* removes inherent margin for page by setting to 0. */
 /* sets font for the page */
 body {
-    margin: 0;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 /* header width spans width of page and height takes up small portion at the top */
 /* sets background color to bluish-gray */
 /* display flex to center image vertically and horizontally with justify-content and align-items */
 header {
-    width: 100%;
-    height: 15vh;
-    background-color:rgb(47, 69, 79);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 15vh;
+  background-color: rgb(47, 69, 79);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* gives the title a max width so its not massive and width so it is responsive when window is smaller */
 .title {
-    max-width: 400px;
-    width: 70vw;
+  max-width: 400px;
+  width: 70vw;
 }
 /* sets navbar background color to dark gray */
 /* overflow:hidden prevents navbar from disappearing due to floated children being taken out of page flow */
 .navbar {
-    background-color: rgb(61, 61, 61);
-    overflow: hidden;
+  background-color: rgb(61, 61, 61);
+  overflow: hidden;
 }
 /* styles links within navbar */
 /* floats items to the right of the nav */
 /* sets text to white and give each item padding */
 /* removes inherent link styles */
 .navbar a {
-    float: right;
-    color: whitesmoke;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+  float: right;
+  color: whitesmoke;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 /* sets background color to a darker shade of gray when link is hovered */
-.navbar a:hover{
-    background-color:rgb(40, 40, 40)
+.navbar a:hover {
+  background-color: rgb(40, 40, 40);
 }
 /* sets background color to off-white and text color to black while link is clicked */
 .navbar a:active {
-    background-color: rgb(245, 245, 245);
-    color: black;
+  background-color: rgb(245, 245, 245);
+  color: black;
 }
 /* floats the "home" item to the left of the nav */
 #home {
-    float: left;
+  float: left;
 }
 /* sets min-height to take up majority of page */
 /* sets main to flexbox in a column direction to keep title, board, and buttons aligned on top one another */
@@ -56,100 +56,99 @@ header {
 /* align-items to center each item on the y axis */
 /* sets background color-white */
 #main {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    background-color: white;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
 }
 /* makes the board a 3x3 grid with equal sized boxes */
 #board {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 /* padding sets size of each box */
 box {
-    padding: 35px;
+  padding: 35px;
 }
 /* the following 8 ids create borders on specific sides of each box to make the hash pattern for the board */
 /* makes the border black, solid, and 3px wide */
 #top-left {
-    border-bottom: black solid 3px;
-    border-right: black solid 3px;
+  border-bottom: black solid 3px;
+  border-right: black solid 3px;
 }
 
 #top-center {
-    border-bottom: black solid 3px;
+  border-bottom: black solid 3px;
 }
 
 #top-right {
-    border-left: black solid 3px;
-    border-bottom: black solid 3px;
+  border-left: black solid 3px;
+  border-bottom: black solid 3px;
 }
 
 #center-left {
-    border-right: black solid 3px;
-    border-bottom:black solid 3px;
+  border-right: black solid 3px;
+  border-bottom: black solid 3px;
 }
 
 #center {
-    border-bottom: black solid 3px;
+  border-bottom: black solid 3px;
 }
 
 #center-right {
-    border-left: black solid 3px;
-    border-bottom: black solid 3px;
+  border-left: black solid 3px;
+  border-bottom: black solid 3px;
 }
 
 #bottom-left {
-    border-right: black solid 3px;
+  border-right: black solid 3px;
 }
 
 #bottom-right {
-    border-left: black solid 3px;
+  border-left: black solid 3px;
 }
 /* gives footer same background color as nav bar */
 /* overflow:hidden prevents footer from disappearing due to floated children being taken out of page flow */
 /* footer width spans width of the page */
-.footer{
-    background-color:rgb(61, 61, 61);
-    overflow: hidden;
-    width: 100%;
+.footer {
+  background-color: rgb(61, 61, 61);
+  overflow: hidden;
+  width: 100%;
 }
 /* floats contact info to the right */
 /* text color white */
 /* padding on left and right to keep text away from the edge of the page */
 #contact {
-    float: right;
-    color: white;
-    padding: 0 10px;
+  float: right;
+  color: white;
+  padding: 0 10px;
 }
 /* floats copyright info to the left */
 /* text color white */
 /* padding to keep text away from the edge of the page and top of the footer */
 #copy {
-    float: left;
-    color: white;
-    padding: 10px;
+  float: left;
+  color: white;
+  padding: 10px;
 }
 /* removes inherent list style from contact info */
 ul {
-    list-style: none;
-  }
+  list-style: none;
+}
 
 /* adjusts style when width < 325px (eg. galaxy fold) for responsiveness */
 @media screen and (max-width: 325px) {
-    /* removes floats and centers contact and copyright info so they stack instead of repositioning themselves */
-    #contact {
-        float: none;
-        text-align: center;
-    }
-    #copy {
-        float: none;
-        text-align: center; 
-    }
+  /* removes floats and centers contact and copyright info so they stack instead of repositioning themselves */
+  #contact {
+    float: none;
+    text-align: center;
+  }
+  #copy {
+    float: none;
+    text-align: center;
+  }
 }
 /* media query not needed for width > 325 px on these pages */

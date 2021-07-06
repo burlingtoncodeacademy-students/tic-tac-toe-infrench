@@ -1,377 +1,281 @@
-let player;
-let playerOne = "Player X";
-let playerTwo = "Computer O";
-let count;
-let intervalId;
-let startButton = document.getElementById("start");
-let resetButton = document.getElementById("reset");
-let board = document.getElementById("board");
-let status = document.getElementById("status");
-let timer = document.getElementById("timer");
-let invalidMove = document.getElementById("invalid");
-let boxOne = document.getElementById("top-left");
-let boxTwo = document.getElementById("top-center");
-let boxThree = document.getElementById("top-right");
-let boxFour = document.getElementById("center-left");
-let boxFive = document.getElementById("center");
-let boxSix = document.getElementById("center-right");
-let boxSeven = document.getElementById("bottom-left");
-let boxEight = document.getElementById("bottom-center");
-let boxNine = document.getElementById("bottom-right");
-let rowOne = Array.from(document.getElementsByClassName("row1"));
-let rowTwo = Array.from(document.getElementsByClassName("row2"));
-let rowThree = Array.from(document.getElementsByClassName("row3"));
-let columnOne = Array.from(document.getElementsByClassName("column1"));
-let columnTwo = Array.from(document.getElementsByClassName("column2"));
-let columnThree = Array.from(document.getElementsByClassName("column3"));
-let diaOne = Array.from(document.getElementsByClassName("diagonal1"));
-let diaTwo = Array.from(document.getElementsByClassName("diagonal2"));
-let gameState = false;
-let main = document.getElementById("main");
-let xArray = [];
-let rowOneArr;
-let rowTwoArr;
-let rowThreeArr;
-let columnOneArr;
-let columnTwoArr;
-let columnThreeArr;
-let diaOneArr;
-let diaTwoArr;
-let inRowArray = [
-  rowOne,
-  rowTwo,
-  rowThree,
-  columnOne,
-  columnTwo,
-  columnThree,
-  diaOne,
-  diaTwo,
-];
-let boardCollection = board.children;
-let boardArray = Array.from(boardCollection);
+//! Global variables
 
+// initialize player
+let player;
+// set playerOne to player X
+let playerOne = "Player X";
+// set playerTwo to "Computer O"
+let playerTwo = "Computer O";
+// initialize count for time function
+let count;
+// initialize intervalId for time function
+let intervalId;
+// set startButton to button with Id "start"
+let startButton = document.getElementById("start");
+// set resetButton to button with Id "reset"
+let resetButton = document.getElementById("reset");
+// set board to div with id "board"
+let board = document.getElementById("board");
+// set status to div with id "status"
+let status = document.getElementById("status");
+// set timer to div with id "timer"
+let timer = document.getElementById("timer");
+// set invalidMove to div with id "invalid"
+let invalidMove = document.getElementById("invalid");
+// set square to all elements with class "box"
+let square = document.getElementsByClassName("box");
+// set main to div containing the main elements of the page excluding header, nav, and footer
+let main = document.getElementById("main");
+// convert the square collection to an array and set it to variable boardArray
+let boardArray = Array.from(square);
+// initialize gameStatus as an array of numbers 1-9
+let gameStatus = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+//! functions
+
+// start function
 function start() {
-  console.log(boardArray.length);
-  if (gameState === false) {
-  }// } else if (player === playerTwo) {
-  //   compTurn();
-  // }
+  // for each box in the boardArray
   boardArray.forEach((box) => {
+    // add an event listener and run clickBox function when clicked
     box.addEventListener("click", clickBox);
   });
 }
-
+// function when a box is clicked after the start function has been called
 function clickBox(evt) {
+  // if the gameState doesnt equal true, do not go further
   if (gameState !== true) {
+    // else if the textContent of the target of the event,
+    // the box that was clicked,
+    // does not equal an empty string,
   } else if (evt.target.textContent !== "") {
+    // change the textContent of the invalidMove div to tell the user to select an empty cell
     invalidMove.textContent = " \nPlease select an empty cell.";
+    // else if the player is playerOne
   } else if (player === playerOne) {
+    // set invalidMove.textContent to an empty string
     invalidMove.textContent = "";
+    // set the textcontent of the clicked box to "x"
     evt.target.textContent = "x";
+    // set the item at the gameStatus index of the clicked box's id minus 1 to "x"
+    gameStatus[evt.target.id.slice(3) - 1] = "x";
+    // change the player to playerTwo
     player = playerTwo;
+    // display that it is playerTwo's turn in the status div
     status.textContent = `${playerTwo}'s turn`;
-    console.log(xArray);
-    inRowArray.forEach((line) => {
-      line.forEach((box) => {
-        xArray.push(box.textContent);
-        rowOneArr = xArray.slice(0, 3);
-        rowTwoArr = xArray.slice(3, 6);
-        rowThreeArr = xArray.slice(6, 9);
-        columnOneArr = xArray.slice(9, 12);
-        columnTwoArr = xArray.slice(12, 15);
-        columnThreeArr = xArray.slice(15, 18);
-        diaOneArr = xArray.slice(18, 21);
-        diaTwoArr = xArray.slice(21, 24);
-      });
-    });
-    if (rowOneArr.join(" ") === "x x x") {
-      rowOne.forEach((box) => {
-        box.style.backgroundColor = "blue";
-      });
-      win(playerOne);
-    } else if (rowTwoArr.join(" ") === "x x x") {
-      rowTwo.forEach((box) => {
-        box.style.backgroundColor = "blue";
-      });
-      win(playerOne);
-    } else if (rowThreeArr.join(" ") === "x x x") {
-      rowThree.forEach((box) => {
-        box.style.backgroundColor = "blue";
-      });
-      win(playerOne);
-    } else if (columnOneArr.join(" ") === "x x x") {
-      columnOne.forEach((box) => {
-        box.style.backgroundColor = "blue";
-      });
-      win(playerOne);
-    } else if (columnTwoArr.join(" ") === "x x x") {
-      columnTwo.forEach((box) => {
-        box.style.backgroundColor = "blue";
-      });
-      win(playerOne);
-    } else if (columnThreeArr.join(" ") === "x x x") {
-      columnThree.forEach((box) => {
-        box.style.backgroundColor = "blue";
-      });
-      win(playerOne);
-    } else if (diaOneArr.join(" ") === "x x x") {
-      diaOne.forEach((box) => {
-        box.style.backgroundColor = "blue";
-      });
-      win(playerOne);
-    } else if (diaTwoArr.join(" ") === "x x x") {
-      diaTwo.forEach((box) => {
-        box.style.backgroundColor = "blue";
-      });
-      win(playerOne);
+    // run the win function
+    win();
+    // if the gameState is true after the win function runs
+    if (gameState === true) {
+      // run the compTurn function after .5 seconds
+      setTimeout(compTurn, 500);
     }
-    start();
   }
-     else if (player === playerTwo) {
-  let randBox = Math.floor(Math.random() * boardArray.length + 1);
+}
+// function for the computer's turn
+function compTurn() {
+  // get a random number between 0 and 1, multiply it by the length of the board array, and round it down to the nearest integer
+  // set this number to randBox
+  let randBox = Math.floor(Math.random() * boardArray.length);
   console.log(randBox);
+  // set player to playerOne
   player = playerOne;
+  // display that it is playerTwo's turn in the status div
   status.textContent = `${playerOne}'s turn`;
-  if (
-    boxOne.textContent !== "" &&
-    boxTwo.textContent !== "" &&
-    boxThree.textContent !== "" &&
-    boxFour.textContent !== "" &&
-    boxFive.textContent !== "" &&
-    boxSix.textContent !== "" &&
-    boxSeven.textContent !== "" &&
-    boxEight.textContent !== "" &&
-    boxNine.textContent !== ""
-  ) {
-  } else if (randBox === 1) {
-    if (boxOne.textContent === "") {
-      boxOne.textContent = "O";
-    } else {
+  // if the gameState is true
+  if (gameState === true) {
+    // if the item in gameStatus at the index of the randomly generated number is either "x" or "O"
+    if (gameStatus[randBox] === "x" || gameStatus[randBox] === "O") {
+      // run this function again
       compTurn();
-    }
-  } else if (randBox === 2) {
-    if (boxTwo.textContent === "") {
-      boxTwo.textContent = "O";
+      // otherwise
     } else {
-      compTurn();
-    }
-  } else if (randBox === 3) {
-    if (boxThree.textContent === "") {
-      boxThree.textContent = "O";
-    } else {
-      compTurn();
-    }
-  } else if (randBox === 4) {
-    if (boxFour.textContent === "") {
-      boxFour.textContent = "O";
-    } else {
-      compTurn();
-    }
-  } else if (randBox === 5) {
-    if (boxFive.textContent === "") {
-      boxFive.textContent = "O";
-    } else {
-      compTurn();
-    }
-  } else if (randBox === 6) {
-    if (boxSix.textContent === "") {
-      boxSix.textContent = "O";
-    } else {
-      compTurn();
-    }
-  } else if (randBox === 7) {
-    if (boxSeven.textContent === "") {
-      boxSeven.textContent = "O";
-    } else {
-      compTurn();
-    }
-  } else if (randBox === 8) {
-    if (boxEight.textContent === "") {
-      boxEight.textContent = "O";
-    } else {
-      compTurn();
-    }
-  } else if (randBox === 9) {
-    if (boxNine.textContent === "") {
-      boxNine.textContent = "O";
-    } else {
-      compTurn();
+      // the textContent of the box at the index selected in the collection of squares is set to "O"
+      square[randBox].textContent = "O";
+      // and the item in gameStatus at the index selected is set to "O"
+      gameStatus[randBox] = "O";
+      // run the win function
+      win();
     }
   }
-  inRowArray.forEach((line) => {
-    line.forEach((box) => {
-      xArray.push(box.textContent);
-      rowOneArr = xArray.slice(0, 3);
-      rowTwoArr = xArray.slice(3, 6);
-      rowThreeArr = xArray.slice(6, 9);
-      columnOneArr = xArray.slice(9, 12);
-      columnTwoArr = xArray.slice(12, 15);
-      columnThreeArr = xArray.slice(15, 18);
-      diaOneArr = xArray.slice(18, 21);
-      diaTwoArr = xArray.slice(21, 24);
-    });
-  });
-  if (rowOneArr.join(" ") === "O O O") {
-    rowOne.forEach((box) => {
-      box.style.backgroundColor = "blue";
-    });
-    win(playerTwo);
-  } else if (rowTwoArr.join(" ") === "O O O") {
-    rowTwo.forEach((box) => {
-      box.style.backgroundColor = "blue";
-    });
-    win(playerTwo);
-  } else if (rowThreeArr.join(" ") === "O O O") {
-    rowThree.forEach((box) => {
-      box.style.backgroundColor = "blue";
-    });
-    win(playerTwo);
-  } else if (columnOneArr.join(" ") === "O O O") {
-    columnOne.forEach((box) => {
-      box.style.backgroundColor = "blue";
-    });
-    win(playerTwo);
-  } else if (columnTwoArr.join(" ") === "O O O") {
-    columnTwo.forEach((box) => {
-      box.style.backgroundColor = "blue";
-    });
-    win(playerTwo);
-  } else if (columnThreeArr.join(" ") === "O O O") {
-    columnThree.forEach((box) => {
-      box.style.backgroundColor = "blue";
-    });
-    win(playerTwo);
-  } else if (diaOneArr.join(" ") === "O O O") {
-    diaOne.forEach((box) => {
-      box.style.backgroundColor = "blue";
-    });
-    win(playerTwo);
-  } else if (diaTwoArr.join(" ") === "O O O") {
-    diaTwo.forEach((box) => {
-      box.style.backgroundColor = "blue";
-    });
-    win(playerTwo);
-  }
 }
-}
-
-// function compTurn() {
-//   let randBox = Math.floor(Math.random() * boardArray.length + 1);
-//   console.log(randBox);
-//   player = playerOne;
-//   status.textContent = `${playerOne}'s turn`;
-//   if (
-//     boxOne.textContent !== "" &&
-//     boxTwo.textContent !== "" &&
-//     boxThree.textContent !== "" &&
-//     boxFour.textContent !== "" &&
-//     boxFive.textContent !== "" &&
-//     boxSix.textContent !== "" &&
-//     boxSeven.textContent !== "" &&
-//     boxEight.textContent !== "" &&
-//     boxNine.textContent !== ""
-//   ) {
-//   } else if (randBox === 1) {
-//     if (boxOne.textContent === "") {
-//       boxOne.textContent = "O";
-//     } else {
-//       compTurn();
-//     }
-//   } else if (randBox === 2) {
-//     if (boxTwo.textContent === "") {
-//       boxTwo.textContent = "O";
-//     } else {
-//       compTurn();
-//     }
-//   } else if (randBox === 3) {
-//     if (boxThree.textContent === "") {
-//       boxThree.textContent = "O";
-//     } else {
-//       compTurn();
-//     }
-//   } else if (randBox === 4) {
-//     if (boxFour.textContent === "") {
-//       boxFour.textContent = "O";
-//     } else {
-//       compTurn();
-//     }
-//   } else if (randBox === 5) {
-//     if (boxFive.textContent === "") {
-//       boxFive.textContent = "O";
-//     } else {
-//       compTurn();
-//     }
-//   } else if (randBox === 6) {
-//     if (boxSix.textContent === "") {
-//       boxSix.textContent = "O";
-//     } else {
-//       compTurn();
-//     }
-//   } else if (randBox === 7) {
-//     if (boxSeven.textContent === "") {
-//       boxSeven.textContent = "O";
-//     } else {
-//       compTurn();
-//     }
-//   } else if (randBox === 8) {
-//     if (boxEight.textContent === "") {
-//       boxEight.textContent = "O";
-//     } else {
-//       compTurn();
-//     }
-//   } else if (randBox === 9) {
-//     if (boxNine.textContent === "") {
-//       boxNine.textContent = "O";
-//     } else {
-//       compTurn();
-//     }
-//   }
-// }
-
+// function to reset the board
 function clearBoard() {
+  // for each box in the boardArray
   boardArray.forEach((box) => {
+    // set the textContent to an empty string
     box.textContent = "";
+    // set the status to an empty string
     status.textContent = "";
+    // remove the background color from each box
     box.style.backgroundColor = "";
-    xArray = [];
-    rowOneArr = [];
-    rowTwoArr = [];
-    rowThreeArr = [];
-    columnOneArr = [];
-    columnTwoArr = [];
-    columnThreeArr = [];
-    diaOneArr = [];
-    diaTwoArr = [];
+    // reset the gameStatus array
+    gameStatus = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    // enable the start button
     startButton.disabled = false;
+    // disable the reset button
     resetButton.disabled = true;
+    // clear the interval of the setInterval in the timer function
     clearInterval(intervalId);
+    // set the textContent of the timer div to and empty string
     timer.textContent = "";
+    // remove the event listen from each box
     box.removeEventListener("click", clickBox);
   });
 }
-
-function win(player) {
-  status.textContent = `Congratulations! ${player} Wins!!`;
-  gameState = false;
+// function to check for draws
+function draw() {
+  // filter each box with a textContent of "x" or "O" in the boardArray
+  // return them to a new array, drawArray
+  let drawArray = boardArray.filter((box) => {
+    return box.textContent === "x" || box.textContent === "O";
+  });
+  // if the length of drawArray is 9
+  if (drawArray.length === 9) {
+    // change gameState to false to stop it from continuing
+    gameState = false;
+    // display "draw" in the status textcontent
+    status.textContent = "Draw";
+  }
 }
-
+// function to check if either player has won
+function win() {
+  // if the gameState is true
+  if (gameState === true) {
+    // if the item at the 0 index of gamestatus is equal to the one at the 1 index and 2 index
+    // this is the top row
+    if (gameStatus[0] === gameStatus[1] && gameStatus[0] === gameStatus[2]) {
+      // and it is equal to "x"
+      if (gameStatus[0] === "x") {
+        // display that player x wins
+        status.textContent = "Congratulations! Player X Wins!!";
+        // otherwise
+      } else {
+        // display that player O wins
+        status.textContent = "Congratulations! Player O Wins!!";
+      }
+      // set gameState to false to stop the game
+      gameState = false;
+      //otherwise
+    } else if (
+      // if the item at 0 index is equal to 3 index and 6 index
+      // this is the left column
+      gameStatus[0] === gameStatus[3] &&
+      gameStatus[0] === gameStatus[6]
+    ) {
+      // same as above
+      if (gameStatus[0] === "x") {
+        status.textContent = "Congratulations! Player X Wins!!";
+      } else {
+        status.textContent = "Congratulations! Player O Wins!!";
+      }
+      gameState = false;
+    } else if (
+      // backslash diagonal
+      gameStatus[0] === gameStatus[4] &&
+      gameStatus[0] === gameStatus[8]
+    ) {
+      if (gameStatus[0] === "x") {
+        status.textContent = "Congratulations! Player X Wins!!";
+      } else {
+        status.textContent = "Congratulations! Player O Wins!!";
+      }
+      gameState = false;
+    } else if (
+      // middle column
+      gameStatus[1] === gameStatus[4] &&
+      gameStatus[1] === gameStatus[7]
+    ) {
+      if (gameStatus[1] === "x") {
+        status.textContent = "Congratulations! Player X Wins!!";
+      } else {
+        status.textContent = "Congratulations! Player O Wins!!";
+      }
+      gameState = false;
+    } else if (
+      // right column
+      gameStatus[2] === gameStatus[5] &&
+      gameStatus[2] === gameStatus[8]
+    ) {
+      if (gameStatus[2] === "x") {
+        status.textContent = "Congratulations! Player X Wins!!";
+      } else {
+        status.textContent = "Congratulations! Player O Wins!!";
+      }
+      gameState = false;
+    } else if (
+      // forward slash diagonal
+      gameStatus[2] === gameStatus[4] &&
+      gameStatus[2] === gameStatus[6]
+    ) {
+      if (gameStatus[2] === "x") {
+        status.textContent = "Congratulations! Player X Wins!!";
+      } else {
+        status.textContent = "Congratulations! Player O Wins!!";
+      }
+      gameState = false;
+    } else if (
+      // middle row
+      gameStatus[3] === gameStatus[4] &&
+      gameStatus[3] === gameStatus[5]
+    ) {
+      gameState = false;
+      if (gameStatus[3] === "x") {
+        status.textContent = "Congratulations! Player X Wins!!";
+      } else {
+        status.textContent = "Congratulations! Player O Wins!!";
+      }
+      gameState = false;
+    } else if (
+      // bottom row
+      gameStatus[6] === gameStatus[7] &&
+      gameStatus[6] === gameStatus[8]
+    ) {
+      if (gameStatus[6] === "x") {
+        status.textContent = "Congratulations! Player X Wins!!";
+      } else {
+        status.textContent = "Congratulations! Player O Wins!!";
+      }
+      gameState = false;
+    } else {
+      // if none of these are true, run the draw function
+      draw();
+    }
+  }
+}
+// function counting time elapsed
 function time() {
+  // set the count to 0
   count = 0;
+  // call tick function every second, setting this to a variable intervalId
   intervalId = setInterval(tick, 1000);
+  // tick function
   function tick() {
+    // display the textcontent of timer div to show amount of seconds elapsed
     timer.textContent = `Time Elapsed ${count} seconds`;
+    // increase count by 1
     count++;
   }
 }
 
+//! event listeners
+
+// adds click event listener to start button
 startButton.addEventListener("click", (evt) => {
+  // disables start button
   startButton.disabled = true;
+  // sets gamestate to true
   gameState = true;
+  // enables reset button
   resetButton.disabled = false;
+  // sets player to player one
   player = playerOne;
+  // display that its player one's turn
   status.textContent = `${playerOne}'s turn`;
+  // run the timer function
   time();
+  // run the start function
   start();
 });
-
+// adds a click event listener to the reset button that calls the clearBoard function
 resetButton.addEventListener("click", clearBoard);
