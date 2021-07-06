@@ -4,9 +4,59 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- link to the stylesheet for this page -->
+  <link href="styles/game2.css" rel="stylesheet"/>
   <title>Single Player</title>
 </head>
 <body>
-  
+  <!-- contains the header with title image linking to the home page, visually identical to the index page's header -->
+  <header>
+    <a href="/">
+      <img class="title" src="Images/tictactitle.png">
+    </a>
+</header>
+  <!-- contains navbar linking to the other pages, identical to other pages' navbar -->
+  <nav class="navbar">
+      <a id="home" href="/">Home</a></li>
+      <a href="single-player.html">Single</a></li>
+      <a href="multi-player.html">Multi</a></li>
+  </nav>
+  <!-- contains smaller title, the board, and the buttons -->
+  <main id="main">
+    <!-- smaller title -->
+    <h1 class="single">Single Player</h1>
+    <div>
+      <h3 id="status"></h3>
+      <p id="invalid"></p>
+    </div>
+    <!-- contains boxes for each square in the board, with ids to tell where each is located -->
+    <div id="board">
+      <box id="box1" class = "box"></box>
+      <box id="box2" class = "box"></box>
+      <box id="box3" class = "box"></box>
+      <box id="box4" class = "box"></box>
+      <box id="box5" class = "box"></box>
+      <box id="box6" class = "box"></box>
+      <box id="box7" class = "box"></box>
+      <box id="box8" class = "box"></box>
+      <box id="box9" class = "box"></box>
+    </div>
+    <!-- contains the buttons. "start" is enabled, rest are disabled -->
+    <div class="buttons">
+      <button id="start">Start</button>
+      <button disabled id="reset">Reset</button>
+      <button disabled>Replay</button>
+    </div>
+    <div id="timer"></div>
+  </main>
+  <!-- footer containing copyright and contact info -->
+  <footer class="footer">
+    <p id="copy">&copy; 2021 My Website</p>
+    <ul id="contact">
+      <li>(000)000-0000</li>
+      <li>name@email.com</li>
+    </ul>
+  </footer>
+  <script src="scripts/single.js"></script>
 </body>
 </html>

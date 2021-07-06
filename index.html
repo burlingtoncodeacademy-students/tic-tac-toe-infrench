@@ -1,12 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic Tac Toe</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- link to stylesheet for this page -->
+    <link href="styles/index.css" rel="stylesheet" />
+    <title>Tic Tac Toe</title>
+  </head>
+  <body>
+    <!-- contains header with an image of the title. -->
+    <header>
+      <!-- clicking this image reloads the page by linking it to itself -->
+      <a href="/">
+        <img class="title" src="Images/tictactitle.png" />
+      </a>
+    </header>
+    <!-- contains the navbar, with links to each page-->
+    <nav class="navbar">
+      <!-- home anchor has an id to style it differently from the other two items -->
+      <a id="home" href="/">Home</a>
+      <a href="single-player.html">Single</a>
+      <a href="multi-player.html">Multi</a>
+    </nav>
+    <!-- contains the div with two image links to the other pages and the embedded video -->
+    <main class="container">
+      <!-- contains the two image link divs -->
+      <div class="main">
+        <!-- contains the title and image linked to the multiplayer page. gives the anchor a class to target for animation. gives image a class to target for sizing-->
+        <div class="multi">
+          <h3>Multi Player</h3>
+          <a href="multi-player.html">
+            <img class="game" src="Images/multi-board.png" />
+          </a>
+        </div>
+        <!-- contains the title and image linked to the single player page. gives the anchor a class to target for animation. gives image a class to target for sizing -->
+        <div class="single">
+          <h3>Single Player</h3>
+          <a class="expand" href="single-player.html">
+            <img class="game" src="Images/single-board.png" />
+          </a>
+        </div>
+        <!-- closes the class "main" div -->
+      </div>
+      <!-- embedded video -->
+      <iframe
+        src="https://www.youtube.com/embed/3qzcAMShotQ"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </main>
+    <!-- footer containing copyright and contact info -->
+    <footer class="footer">
+      <p id="copy">&copy; 2021 My Website</p>
+      <ul id="contact">
+        <li>(000)000-0000</li>
+        <li>name@email.com</li>
+      </ul>
+    </footer>
+  </body>
 </html>

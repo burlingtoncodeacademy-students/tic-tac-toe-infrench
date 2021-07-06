@@ -4,9 +4,59 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multi Player</title>
+  <!-- link to stylesheet for this page-->
+  <link href="styles/game.css" rel="stylesheet"/>
+  <title>Multi-Player</title>
 </head>
 <body>
-  
+  <!-- contains header with title image linking to home page --> 
+  <header>
+    <a href="/">
+      <img class="title" src="Images/tictactitle.png">
+    </a>
+</header>
+  <!-- contains navbar linking to the other pages. identical to other pages' nav -->
+  <nav class="navbar">
+      <a id="home" href="/">Home</a></li>
+      <a href="single-player.html">Single</a></li>
+      <a href="multi-player.html">Multi</a></li>
+  </nav>
+  <!-- contains smaller title, the board, and the buttons -->
+  <main id="main">
+    <!-- smaller title -->
+    <h1 class="multi">Multiplayer</h1>
+    <div>
+      <h3 id="status"></h3>
+      <p id="invalid"></p>
+    </div>
+    <!-- contains boxes for each square on the board, with ids to tell where each is located -->
+    <div id="board">
+      <box id="top-left" class="row1 column1 diagonal1"></box>
+      <box id="top-center" class="row1 column2"></box>
+      <box id="top-right" class="row1 column3 diagonal2"></box>
+      <box id="center-left" class="row2 column1"></box>
+      <box id="center" class="row2 column2 diagonal1 diagonal2"></box>
+      <box id="center-right" class="row2 column3"></box>
+      <box id="bottom-left" class="row3 column1 diagonal2"></box>
+      <box id="bottom-center" class="row3 column2"></box>
+      <box id="bottom-right" class="row3 column3 diagonal1"></box>
+    </div>
+    <!-- contains the buttons. "Start" is enabled, rest disabled -->
+    <div class="buttons">
+      <button id="start">Start</button>
+      <button disabled id="reset">Reset</button>
+      <button disabled id="replay">Replay</button>
+    </div>
+    <div id="timer"></div>
+  </main>
+  <!-- footer containing copyright and contact info -->
+  <footer class="footer">
+    <p id="copy">&copy; 2021 My Website</p>
+    <ul id="contact">
+      <li>(000)000-0000</li>
+      <li>name@email.com</li>
+    </ul>
+  </footer>
+  <script src="scripts/multi.js"></script>
 </body>
 </html>

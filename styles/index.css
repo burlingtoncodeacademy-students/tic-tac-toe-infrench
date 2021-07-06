@@ -1,0 +1,169 @@
+/* removes inherent margin and padding for page by setting to 0. */
+/* sets min-height to 100vh to ensure body spans the whole length of the browser window. */
+/* sets font for the page */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+/* header width spans width of page and height takes up small portion at the top */
+/* sets background color to bluish-gray */
+/* display flex to center image vertically and horizontally with justify-content and align-items */
+header {
+  width: 100%;
+  height: 15vh;
+  background-color: rgb(47, 69, 79);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* gives the title a max width so its not massive and width so it is responsive when window is smaller */
+.title {
+  max-width: 400px;
+  width: 70vw;
+}
+/* sets navbar background color to dark gray */
+/* overflow:hidden prevents navbar from disappearing due to floated children being taken out of page flow */
+.navbar {
+  background-color: rgb(61, 61, 61);
+  overflow: hidden;
+}
+/* styles links within navbar */
+/* floats items to the right of the nav */
+/* sets text to white and give each item padding */
+/* removes inherent link styles */
+.navbar a {
+  float: right;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+/* sets background color to a darker shade of gray when link is hovered */
+.navbar a:hover {
+  background-color: rgb(40, 40, 40);
+}
+/* sets background color to off-white and text color to black while link is clicked */
+.navbar a:active {
+  background-color: rgb(245, 245, 245);
+  color: black;
+}
+/* floats the "home" item to the left of the nav */
+#home {
+  float: left;
+}
+/* sets container to flexbox column to keep embedded video below the images and to allow embedded video to be centered on mobile*/
+.container {
+    display: flex;
+    flex-direction: column;
+}
+/* sets main to flexbox to keep images side by side with text centered above */
+/* sets min-height to take up majority of page */
+/* justify-content: space-around and width: 100% keeps images spaced evenly on the center of the page*/
+.main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  min-height: 80vh;
+  /* width: 100% */
+}
+/* gives image a margin-top to separate text from image */
+.main img {
+  margin-top: 10px;
+}
+/* centers text above each image */
+h3 {
+    text-align: center;
+}
+/* sets max size for images */
+.game {
+  max-width: 300px;
+  max-height: 300px;
+}
+/* animation when image is hovered over. stays at end of animation until cursor is removed */
+.game:hover {
+  animation-name: expand;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+/* animation slightly expands image */
+@keyframes expand {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+/* sets max-size for embedded video and shifts it to the right of the page */
+iframe {
+    max-width: 300px;
+    padding: 10px;
+    align-self: flex-end;
+}
+/* gives footer same background color as nav bar */
+/* overflow:hidden prevents footer from disappearing due to floated children being taken out of page flow */
+/* footer width spans width of the page */
+.footer {
+  background-color: rgb(61, 61, 61);
+  overflow: hidden;
+  width: 100%;
+}
+/* floats contact info to the right */
+/* text color white */
+/* padding on left and right to keep text away from the edge of the page */
+#contact {
+  float: right;
+  color: white;
+  padding: 0 10px;
+}
+/* floats copyright info to the left */
+/* text color white */
+/* padding to keep text away from the edge of the page and top of the footer */
+#copy {
+  float: left;
+  color: white;
+  padding: 10px;
+}
+/* removes inherent list style from contact info */
+ul {
+  list-style: none;
+}
+/* adjusts style when width < 850px for mobile responsiveness*/
+@media screen and (max-width: 850px) {
+  /* changes main flexbox to column to stack images*/
+  .main {
+    flex-direction: column;
+  }
+  /* keeps images from overflowing onto the navbar due to size */
+  .main img {
+    max-height: 27vh;
+  }
+  /* keeps embedded video from overflowing onto the footer */
+  /* centers video */
+  iframe {
+      max-height: 27vh;
+      align-self: center;
+  }
+  /* keeps items center or they will mess with the width of the page */
+  .container{
+    align-items: center;
+  }
+}
+/* adjusts style when width < 325px (eg. galaxy fold) for responsiveness */
+@media screen and (max-width: 325px) {
+    /* removes floats and centers contact and copyright info so they stack instead of repositioning themselves */
+    #contact {
+        float: none;
+        text-align: center;
+    }
+    #copy {
+        float: none;
+        text-align: center;
+    }
+    /* keeps video from being too wide for the page */
+    iframe {
+        max-width: 250px;
+    }
+}
